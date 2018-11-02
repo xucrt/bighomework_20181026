@@ -53,7 +53,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'bighomework_20181026.urls'
 
-#TEMPLATES_DIRS = os.path.join(BASE_DIR, 'BH_blog/Templates')
+TEMPLATES_DIRS = os.path.join(BASE_DIR, 'BH_blog/Templates')
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATES_DIRS = os.path.join(BASE_DIR, 'BH_blog/Templates')
+#TEMPLATES_DIRS = os.path.join(BASE_DIR, 'BH_blog/Templates')
 
 WSGI_APPLICATION = 'bighomework_20181026.wsgi.application'
 
