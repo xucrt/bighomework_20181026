@@ -13,12 +13,12 @@ from django.contrib import messages
 
 def get_index(request):
     plates = Plate.objects.all()
-    return render(request,'BH_blog_index.html',{'plates':plates})
+    return render(request,'BH_blog_templates/BH_blog_index.html',{'plates':plates})
 
 def get_posts(request,id):
     if request.method=="GET":
         plate = Plate.objects.get(id=id)
-        return render(request,'BH_blog_posts.html',{'plate':plate})
+        return render(request,'BH_blog_templates/BH_blog_posts.html',{'plate':plate})
 
 @login_required
 def post_post(request,id):
@@ -32,7 +32,7 @@ def post_post(request,id):
 
 def get_article(request,id):
     article = Post.objects.get(id=id)
-    return render(request,'BH_blog_article.html',{'article':article})
+    return render(request,'BH_blog_templates/BH_blog_article.html',{'article':article})
 
 @login_required
 def post_article(request,id):
@@ -80,7 +80,7 @@ def index_login(request):
                 return redirect(next_url)
             return redirect('index')
         return HttpResponseRedirect(request.get_full_path()) #登录失败，依旧跳转到当前页面
-    return render(request, 'BH_blog_login.html',{'next_url':next_url})
+    return render(request, 'BH_blog_templates/BH_blog_login.html',{'next_url':next_url})
 
 def index_register(request):
     if request.method == "POST":
@@ -98,5 +98,5 @@ def index_register(request):
                 messages.warning(request, "前后密码不一致")
         else:
             messages.warning(request, "账号已存在")
-    return render(request, 'BH_blog_register.html')
+    return render(request, 'BH_blog_templates/BH_blog_register.html')
 
