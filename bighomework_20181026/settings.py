@@ -53,12 +53,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'bighomework_20181026.urls'
 
-TEMPLATES_DIRS = os.path.join(BASE_DIR, 'BH_blog/Templates')
+#TEMPLATES_DIRS = os.path.join(BASE_DIR, 'Templates')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        #'DIRS': os.path.join(BASE_DIR, 'BH_blog/Templates'),
+        'DIRS': [ 'Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
