@@ -25,6 +25,10 @@ urlpatterns = [
     url(r'^login/', index_login, name="login"),
     url(r'^register/', index_register, name="register"),
     url(r'^index/$', get_index),
+
+    #url(r'^plate/$', get_posts, name='plate'), #Test
+    #url(r'^article/$', get_article, name='article'), #Test
+
     url(r'^plate/(?P<id>\d+)/$', get_posts, name='plate'),
     url(r'^plate/(?P<id>\d+)/post/$', post_post),
     url(r'^article/(?P<id>\d+)/$', get_article, name='article'),
