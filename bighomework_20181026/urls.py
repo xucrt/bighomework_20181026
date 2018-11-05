@@ -21,7 +21,7 @@ from BH_blog.views import get_article,get_index,get_posts,post_post,post_article
 
 urlpatterns = [
     #url(r'^$', home, name='home'),
-    url(r'^admin/$', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'^login/$', index_login, name="login"),
     url(r'^register/$', index_register, name="register"),
     url(r'^index/$', get_index, name="index"),
