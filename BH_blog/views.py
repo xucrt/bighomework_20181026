@@ -20,6 +20,36 @@ def get_posts(request,id):
         plate = Plate.objects.get(id=id)
         return render(request,'BH_blog_templates/BH_blog_posts.html',{'plate':plate})
 
+def index_login(request):
+    next_url = request.GET.get('next')
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            if next_url:
+                return redirect(next_url)
+            return redirect(to="index") #这里使用的"index"是url.py里面的[name=]
+        return HttpResponseRedirect(request.get_full_path()) #登录失败，依旧跳转到当前页面
+    return render(request, 'BH_blog_templates/BH_blog_login.html',{'next_url':next_url})
+
+def index_register(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if not User.objects.filter(username=username).exists():
+            if password1==password2:
+                user = User(username=username)
+                user.set_password(password1)
+                user.save()
+                messages.success(request, "注册成功")
+                return redirect(to="login")
+            else:
+                messages.warning(request, "前后密码不一致")
+        else:
+            messages.warning(request, "账号已存在")
+    return render(request, 'BH_blog_templates/BH_blog_register.html')
+
 @login_required
 def post_post(request,id):
     if request.method=="POST":
@@ -70,33 +100,4 @@ def delete_comment(request,id):
         messages.success(request, "回复成功")
     return redirect(to='article',id=article.id)
 
-def index_login(request):
-    next_url = request.GET.get('next')
-    if request.method == "POST":
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            login(request, form.get_user())
-            if next_url:
-                return redirect(next_url)
-            return redirect('index')
-        return HttpResponseRedirect(request.get_full_path()) #登录失败，依旧跳转到当前页面
-    return render(request, 'BH_blog_templates/BH_blog_login.html',{'next_url':next_url})
-
-def index_register(request):
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password1 = request.POST.get('password1')
-        password2 = request.POST.get('password2')
-        if not User.objects.filter(username=username).exists():
-            if password1==password2:
-                user = User(username=username)
-                user.set_password(password1)
-                user.save()
-                messages.success(request, "注册成功")
-                return redirect(to="login")
-            else:
-                messages.warning(request, "前后密码不一致")
-        else:
-            messages.warning(request, "账号已存在")
-    return render(request, 'BH_blog_templates/BH_blog_register.html')
 

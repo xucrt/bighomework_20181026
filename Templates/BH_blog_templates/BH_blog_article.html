@@ -1,4 +1,116 @@
 <!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>文章页面</title>
+		<link rel="stylesheet" href="/static/css/bootstrap.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<script src="/static/js/jquery.js"></script>
+		<script src="/static/js/bootstrap.js"></script>
+	</head>
+
+	<body>
+		<div class="container" style="margin-bottom: 20px;">
+
+			<div class="col-md-8" style="padding:0px;">
+				<h3 style="">
+					{{article.title}}
+
+
+					<a class="btn btn-info" style="float: right;" data-toggle="modal" data-target=".myModalshow">修改</a>
+
+					<a href="#" class="btn btn-danger" style="float: right;" >删除</a>
+
+
+				</h3>
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+						{{article.content}}
+					</div>
+				</div>
+
+
+				<!-- List group -->
+				<ul class="list-group">
+					{% for comment in article.replys.all %}
+					<li class="list-group-item">
+						<h5>{{comment.user.nickname}}：
+
+							<a href="#" class="btn btn-xs btn-danger" style="float:right;">删除</a>
+
+						</h5>
+						{{comment.content}}
+					</li>
+					{% endfor %}
+
+				</ul>
+
+				<hr />
+				<form action="/article/{{article.id}}/comment/" method="post">
+					<div class="form-group">
+						<label for="exampleInputComment">回复：</label>
+						<textarea name="comment" class="form-control" rows="3"></textarea>
+					</div>
+					{%csrf_token%}
+					<button type="submit" class="btn btn-default">提交</button>
+				</form>
+			</div>
+			<div class="col-md-4" style="padding-right:0px;">
+				<h3>推荐</h3>
+
+				<div class="list-group">
+					<a href="#" class="list-group-item active" style="background-color: #b30e2c;border-color: #b30e2c;">
+						最热
+					</a>
+					<a href="#" class="list-group-item">Bloody Hell基础</a>
+					<a href="#" class="list-group-item">Bloody Hell音乐吐槽</a>
+					<a href="#" class="list-group-item">Bloody Hell图片吐槽</a>
+					<a href="#" class="list-group-item">Bloody Hell啥都吐槽</a>
+				</div>
+
+				<div class="list-group">
+					<a href="#" class="list-group-item active">
+						最新
+					</a>
+					<a href="#" class="list-group-item">Bloody Hell基础</a>
+					<a href="#" class="list-group-item">Bloody Hell音乐吐槽</a>
+					<a href="#" class="list-group-item">Bloody Hell图片吐槽</a>
+					<a href="#" class="list-group-item">Bloody Hell啥都吐槽</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade myModalshow">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" data-dismiss="modal">&times;</button>
+						<h4>修改文章内容</h4>
+					</div>
+
+						<div class="modal-body">
+							<form action="/article/{{article.id}}/put/" method="post">
+								<div class="form-group">
+									<label for="exampleInputTitle">文章标题：</label>
+									<input name="title" type="text" class="form-control" value="{{ article.title }}">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">文章内容：</label>
+									<textarea name="content" class="form-control" rows="3">{{article.content}}</textarea>
+								</div>
+								{%csrf_token%}
+								<button type="submit" class="btn btn-primary" >确定</button>
+							</form>
+						</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>
 <!--html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +120,7 @@ BH_blog_article
 <body>
 
 </body>
-</html-->
+</html>
 
 <html lang="en">
 
@@ -36,7 +148,7 @@ BH_blog_article
 					</div>
 				</div>
 
-				<!-- List group -->
+				<!-- List group >
 				<ul class="list-group">
 					<li class="list-group-item">
 						<h5>昵称：<a href="" class="btn btn-xs btn-danger" style="float:right;">删除</a></h5> 缝缝
@@ -82,7 +194,7 @@ BH_blog_article
 					</a>
 					<a href="#" class="list-group-item">Bloody Hell基础</a>
 					<a href="#" class="list-group-item">Bloody Hell图片吐槽</a>
-					<a href="#" class="list-group-item">Bloody Hell音乐吐槽</a>
+					<a href="#" class="list-group-item">Bloody Hell图片吐槽</a>
 					<a href="#" class="list-group-item">Bloody Hell啥都吐槽</a>
 				</div>
 
@@ -92,7 +204,7 @@ BH_blog_article
 					</a>
 					<a href="#" class="list-group-item">Bloody Hell基础</a>
 					<a href="#" class="list-group-item">Bloody Hell图片吐槽</a>
-					<a href="#" class="list-group-item">Bloody Hell音乐吐槽</a>
+					<a href="#" class="list-group-item">Bloody Hell图片吐槽</a>
 					<a href="#" class="list-group-item">Bloody Hell啥都吐槽</a>
 				</div>
 			</div>
@@ -128,4 +240,4 @@ BH_blog_article
 
 	</body>
 
-</html>
+</html-->

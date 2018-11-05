@@ -21,10 +21,10 @@ from BH_blog.views import get_article,get_index,get_posts,post_post,post_article
 
 urlpatterns = [
     #url(r'^$', home, name='home'),
-    url(r'^admin/', admin.site.urls),
-    url(r'^login/', index_login, name="login"),
-    url(r'^register/', index_register, name="register"),
-    url(r'^index/$', get_index),
+    url(r'^admin/$', admin.site.urls),
+    url(r'^login/$', index_login, name="login"),
+    url(r'^register/$', index_register, name="register"),
+    url(r'^index/$', get_index, name="index"),
 
     #url(r'^plate/$', get_posts, name='plate'), #Test
     #url(r'^article/$', get_article, name='article'), #Test
@@ -34,4 +34,7 @@ urlpatterns = [
     url(r'^article/(?P<id>\d+)/$', get_article, name='article'),
     url(r'^article/(?P<id>\d+)/comment/$', post_article),
     url(r'^article/(?P<id>\d+)/put/$', put_article),
+
+    # url(r'^article/(?P<id>\d+)/delete/$',delete_article),
+    # url(r'^article/(?P<id>\d+)/comment/delete/$',delete_comment),
 ]
