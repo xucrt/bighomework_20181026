@@ -18,9 +18,9 @@
 					{{article.title}}
 
 
-					<a class="btn btn-info" style="float: right;" data-toggle="modal" data-target=".myModalshow">修改</a>
+					<a href="/article/{{article.id}}/put/" class="btn btn-info" style="float: right;" data-toggle="modal" data-target=".myModalshow">修改</a>
 
-					<a href="#" class="btn btn-danger" style="float: right;" >删除</a>
+					<a href="/article/{{article.id}}/delete/" class="btn btn-danger" style="float: right;" >删除</a> <!--删除文章-->
 
 
 				</h3>
@@ -37,8 +37,8 @@
 					{% for comment in article.replys.all %}
 					<li class="list-group-item">
 						<h5>{{comment.user.nickname}}：
-
-							<a href="#" class="btn btn-xs btn-danger" style="float:right;">删除</a>
+<!--删除文章回复-->
+							<a href="/article/{{article.id}}/comment/delete/" class="btn btn-xs btn-danger" style="float:right;">删除</a>
 
 						</h5>
 						{{comment.content}}

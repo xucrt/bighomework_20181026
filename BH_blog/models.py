@@ -21,7 +21,7 @@ class Post(models.Model):
     column = models.ForeignKey(to=Plate,related_name="posts")
     createtime = models.DateTimeField(default=timezone.now)
     def __str__(self):
-        return "帖子：{}".format(self.title,)
+        return "文章：{}".format(self.title,)
 
 class Reply(models.Model):
     user = models.ForeignKey(to=User,related_name="replys")

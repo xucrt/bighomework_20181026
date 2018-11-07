@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from BH_blog.views import get_article,get_index,get_posts,post_post,post_article,put_article, index_login,index_register
+from BH_blog.views import get_article,get_index,get_posts,post_post,post_article,put_article, index_login,index_register, delete_article, delete_comment
 
 # from BH_blog.views import home
 
@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', index_login, name="login"),
     url(r'^register/$', index_register, name="register"),
+    url(r'^$', get_index, name="index"),
     url(r'^index/$', get_index, name="index"),
 
     #url(r'^plate/$', get_posts, name='plate'), #Test
@@ -34,7 +35,6 @@ urlpatterns = [
     url(r'^article/(?P<id>\d+)/$', get_article, name='article'),
     url(r'^article/(?P<id>\d+)/comment/$', post_article),
     url(r'^article/(?P<id>\d+)/put/$', put_article),
-
-    # url(r'^article/(?P<id>\d+)/delete/$',delete_article),
-    # url(r'^article/(?P<id>\d+)/comment/delete/$',delete_comment),
+    url(r'^article/(?P<id>\d+)/delete/$',delete_article),
+    url(r'^article/(?P<id>\d+)/comment/delete/$',delete_comment),
 ]
