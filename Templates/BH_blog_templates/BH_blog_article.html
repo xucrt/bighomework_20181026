@@ -16,7 +16,7 @@
 			<div class="col-md-8" style="padding:0px;">
 				<h3 style="">
 					{{article.title}}
-					<a href="/article/{{article.id}}/put/" class="btn btn-info" style="float: right;" data-toggle="modal" data-target=".myModalshow">修改</a>
+					<a href="#" class="btn btn-info" style="float: right;" data-toggle="modal" data-target=".myModalshow">修改</a>
 					<a href="/article/{{article.id}}/delete/" class="btn btn-danger" style="float: right;" >删除</a> <!--删除文章-->
 				</h3>
 
@@ -72,7 +72,6 @@
 						<button class="close" data-dismiss="modal">&times;</button>
 						<h4>修改文章内容</h4>
 					</div>
-
 						<div class="modal-body">
 							<form action="/article/{{article.id}}/put/" method="post">
 								<div class="form-group">
