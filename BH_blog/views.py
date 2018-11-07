@@ -16,9 +16,10 @@ def get_index(request):
     return render(request,'BH_blog_templates/BH_blog_index.html',{'plates':plates})
 
 def get_posts(request,id):
+    plates = Plate.objects.all()
     if request.method=="GET":
         plate = Plate.objects.get(id=id)
-        return render(request,'BH_blog_templates/BH_blog_posts.html',{'plate':plate})
+        return render(request,'BH_blog_templates/BH_blog_posts.html',{'plate':plate,'plates':plates})
 
 def index_login(request):
     next_url = request.GET.get('next')
@@ -61,11 +62,13 @@ def post_post(request,id):
     return redirect(to='plate',id=id)
 
 def get_article(request,id):
+    plates = Plate.objects.all()
     article = Post.objects.get(id=id)
-    return render(request,'BH_blog_templates/BH_blog_article.html',{'article':article})
+    return render(request,'BH_blog_templates/BH_blog_article.html',{'article':article,'plates':plates})
 
 @login_required
 def post_article(request,id):
+    plates = Plate.objects.all()
     if request.method=="POST":
         post = Post.objects.get(id=id)
         comment = request.POST.get('comment')
